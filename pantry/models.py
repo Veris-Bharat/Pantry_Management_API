@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 
+bev_choices = (("3", "3"), ("4", "4"), ("7", "7"), ("8", "8"))
+
 
 class Inventory(models.Model):
     item_name = models.CharField(max_length=25,null=False)
@@ -21,8 +23,8 @@ class Order(models.Model):
 
 class Beverages(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE)
-    morning_bev = models.CharField(choices=(("3","3"),("4","4"),("7","7"),("8","8")),default="3",max_length=2)
-    evening_bev = models.CharField(choices=(("3","3"),("4","4"),("7","7"),("8","8")),default="4",max_length=2)
+    morning_bev = models.CharField(choices=bev_choices, default="3", max_length=2)
+    evening_bev = models.CharField(choices=bev_choices, default="4", max_length=2)
 
 
 class Slots(models.Model):
