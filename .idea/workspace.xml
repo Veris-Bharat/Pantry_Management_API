@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74a50b5c-c87e-4ba6-8fbd-a04a05069779" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pantry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantry/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pantry/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantry/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantry/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantry/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantry/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantry/views.py" afterDir="false" />
     </list>
@@ -18,7 +15,7 @@
     <session id="-1644157210">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.37" value="1" />
@@ -29,52 +26,28 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="33" />
+          <entry key="py" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="33" />
+          <entry key="Python" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="9195" />
+          <entry key="py" value="9699" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="9195" />
+          <entry key="Python" value="9699" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
-              <folding>
-                <element signature="e#22#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pantry/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pantry/models.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -113,14 +86,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pantry/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="197" column="32" selection-start-line="197" selection-start-column="32" selection-end-line="197" selection-end-column="32" />
+            <state relative-caret-position="191">
+              <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
-                <marker date="1549288321640" expanded="true" signature="2958:3106" ph="..." />
-                <marker date="1549288321640" expanded="true" signature="3151:3160" ph="..." />
-                <marker date="1549288321640" expanded="true" signature="4469:4470" ph="..." />
-                <marker date="1549288321640" expanded="true" signature="5516:5521" ph="..." />
+                <marker date="1549292493999" expanded="true" signature="2619:2767" ph="..." />
+                <marker date="1549292493999" expanded="true" signature="2812:2821" ph="..." />
+                <marker date="1549292493999" expanded="true" signature="4130:4131" ph="..." />
+                <marker date="1549292493999" expanded="true" signature="5174:5179" ph="..." />
               </folding>
             </state>
           </provider>
@@ -145,9 +118,9 @@
         <option value="$PROJECT_DIR$/settings/settings.py" />
         <option value="$PROJECT_DIR$/pantry/migrations/serializers.py" />
         <option value="$PROJECT_DIR$/Pantry_Management_API/urls.py" />
-        <option value="$PROJECT_DIR$/pantry/urls.py" />
         <option value="$PROJECT_DIR$/pantry/models.py" />
         <option value="$PROJECT_DIR$/pantry/serializers.py" />
+        <option value="$PROJECT_DIR$/pantry/urls.py" />
         <option value="$PROJECT_DIR$/pantry/views.py" />
       </list>
     </option>
@@ -163,7 +136,35 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Pantry_Management_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pantry_Management_API" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Pantry_Management_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pantry_Management_API" type="462c0819:PsiDirectoryNode" />
+              <item name="pantry" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Pantry_Management_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pantry_Management_API" type="462c0819:PsiDirectoryNode" />
+              <item name="Pantry_Management_API" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Pantry_Management_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pantry_Management_API" type="462c0819:PsiDirectoryNode" />
+              <item name="settings" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Bharat/workspace/django/Pantry_Management_API/pantry/models.py" />
@@ -206,7 +207,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.17038691" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -219,9 +219,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295082" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32459018" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32352942" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32843137" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3295082" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32843137" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -272,9 +272,34 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pantry/migrations/serializers.py" />
+    <entry file="file://$PROJECT_DIR$/Pantry_Management_API/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding>
+            <element signature="e#645#677#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pantry/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <marker date="1549280978426" expanded="true" signature="162:166" ph="..." />
+            <marker date="1549280978426" expanded="true" signature="321:326" ph="..." />
+            <marker date="1549280978426" expanded="true" signature="466:471" ph="..." />
+            <marker date="1549280978426" expanded="true" signature="643:648" ph="..." />
+            <marker date="1549280978426" expanded="true" signature="800:805" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="156">
           <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
           <folding>
             <element signature="e#22#31#0" expanded="true" />
@@ -282,12 +307,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pantry_Management_API/urls.py">
+    <entry file="file://$PROJECT_DIR$/pantry/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+        <state relative-caret-position="65">
+          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
           <folding>
-            <element signature="e#645#677#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -308,41 +333,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pantry/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pantry/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1549280978426" expanded="true" signature="162:166" ph="..." />
-            <marker date="1549280978426" expanded="true" signature="321:326" ph="..." />
-            <marker date="1549280978426" expanded="true" signature="466:471" ph="..." />
-            <marker date="1549280978426" expanded="true" signature="643:648" ph="..." />
-            <marker date="1549280978426" expanded="true" signature="800:805" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pantry/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="197" column="32" selection-start-line="197" selection-start-column="32" selection-end-line="197" selection-end-column="32" />
+        <state relative-caret-position="191">
+          <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
-            <marker date="1549288321640" expanded="true" signature="2958:3106" ph="..." />
-            <marker date="1549288321640" expanded="true" signature="3151:3160" ph="..." />
-            <marker date="1549288321640" expanded="true" signature="4469:4470" ph="..." />
-            <marker date="1549288321640" expanded="true" signature="5516:5521" ph="..." />
+            <marker date="1549292493999" expanded="true" signature="2619:2767" ph="..." />
+            <marker date="1549292493999" expanded="true" signature="2812:2821" ph="..." />
+            <marker date="1549292493999" expanded="true" signature="4130:4131" ph="..." />
+            <marker date="1549292493999" expanded="true" signature="5174:5179" ph="..." />
           </folding>
         </state>
       </provider>

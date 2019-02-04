@@ -4,16 +4,13 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from django.http import HttpResponse, JsonResponse
 from rest_framework.status import (HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND,HTTP_201_CREATED, HTTP_200_OK, HTTP_409_CONFLICT)
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
-from .models import Inventory, Order, Bookings, Beverages, Slots
-from .serializers import InventorySerializer, BeverageSerializer, BookingSerializer, OrderSerializer#, SlotSerializer
-from django.views import View
+from .models import Inventory, Order, Bookings, Beverages
+from .serializers import InventorySerializer, BeverageSerializer, BookingSerializer, OrderSerializer
 from rest_framework.views import APIView
 from datetime import date
-
+import json
 
 @csrf_exempt
 @api_view(["POST"])
@@ -54,16 +51,6 @@ def register(request):
                 serializer.save()
                 return Response({'message':"success"},status=HTTP_200_OK)
             return Response({'error':serializer.errors}, status=HTTP_409_CONFLICT)
-
-"""
-@csrf_exempt
-@api_view(["GET"])
-def pending(request):
-
-    current_user = request.user
-    pend = Order.objects.filter(user_id=current_user.id)
-    return Response(pend, status=HTTP_200_OK)
-"""
 
 
 class TheBeverage(APIView):
@@ -114,9 +101,9 @@ class TheOrders(APIView):
     @csrf_exempt
     def get_object(self, user):
         try:
-            return Order.objects.get(user_id=user.id)
+            return Order.objects.filter(user_id=user.id)
         except Order.DoesNotExist:
-            raise HTTP_404_NOT_FOUND
+            return Response({"message": "No order Exist"}, status=HTTP_404_NOT_FOUND)
 
     @csrf_exempt
     def get(self, request):
@@ -131,13 +118,11 @@ class TheOrders(APIView):
     @csrf_exempt
     def post(self, request):
         current_user = request.user
-        item_id = []
-        quantity = []
-        for item in request.data:
-            item_id.append(item['item_id'])
-            quantity.append(item['quantity'])
+        order_data=request.data.get("OrderItems")
+        data=json.dumps(order_data)
+        return Response(data)
 
-            serializer = OrderSerializer()
+        serializer = OrderSerializer()
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)

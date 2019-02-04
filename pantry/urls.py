@@ -3,9 +3,9 @@ from .views import login, register, TheInventory, TheOrders, TheBeverage, TheBoo
 
 urlpatterns=[
     path('login', login),
-    path('register', register),\
+    path('register', register),
     path('inventory/', TheInventory.as_view()),
     path('order/', TheOrders.as_view()),
     path('beverages/', TheBeverage.as_view()),
-    path('bookings/',TheBookings.as_view())
+    path('bookings/', TheBookings.as_view())
 ]
