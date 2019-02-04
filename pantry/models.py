@@ -33,8 +33,8 @@ class Slots(models.Model):
 
 
 class Bookings(models.Model):
-    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
-    slot_id = models.ForeignKey(Slots,on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    slot_id = models.ForeignKey(Slots, on_delete=models.CASCADE)
     day_book = models.DateField(default=datetime.now)
 
     class Meta:
