@@ -6,11 +6,11 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.status import (HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND,HTTP_201_CREATED, HTTP_200_OK, HTTP_409_CONFLICT)
 from rest_framework.response import Response
-from .models import Inventory, Order, Bookings, Beverages
-from .serializers import InventorySerializer, BeverageSerializer, BookingSerializer, OrderSerializer
+from .models import Inventory, Order, Bookings, Beverages, ItemBook
+from .serializers import InventorySerializer, BeverageSerializer, BookingSerializer, OrderSerializer,ItemBookSerializer
 from rest_framework.views import APIView
-from datetime import date
-import json
+from datetime import date,datetime
+
 
 @csrf_exempt
 @api_view(["POST"])
@@ -108,23 +108,36 @@ class TheOrders(APIView):
     @csrf_exempt
     def get(self, request):
         current_user = request.user
-        order = self.get_object(current_user)
+        orders = self.get_object(current_user)
         result = []
-        for item in order:
-            serializer = OrderSerializer(item)
-            result.append(serializer.data)
+        res = []
+        for order in orders:
+            serializer = OrderSerializer(order)
+            orderid = serializer.data['id']
+            items = ItemBook.objects.filter(order_id=orderid)
+            for item in items:
+                serial = ItemBookSerializer(item)
+                res.append(serial.data)
+            result.append(res)
         return Response({"Orders": result}, status=HTTP_200_OK)
 
     @csrf_exempt
     def post(self, request):
         current_user = request.user
-        order_data=request.data.get("OrderItems")
-        data=json.dumps(order_data)
-        return Response(data)
-
-        serializer = OrderSerializer()
+        order_data = request.data.get("OrderItems")
+        data = {'user_id':current_user.id, 'order_time':datetime.utcnow().time(),'pending':True}
+        serializer = OrderSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            for item in order_data:
+                item_id = item["item_id"]
+                quantity = item["quantity"]
+                data_order = {'order_id':serializer.data['id'],'item_id':item_id, 'quantity': quantity}
+                serial=ItemBookSerializer(data=data_order)
+                if serial.is_valid():
+                    serial.save()
+                else:
+                    return Response(serial.errors, status=HTTP_400_BAD_REQUEST)
             return Response(serializer.data, status=HTTP_201_CREATED)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 

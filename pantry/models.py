@@ -12,8 +12,6 @@ class Inventory(models.Model):
 
 class Order(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE)
-    item_id = models.ForeignKey(Inventory,on_delete=models.CASCADE)
-    quantity = models.PositiveSmallIntegerField(default=0)
     order_time = models.DateTimeField(auto_now=True)
     pending = models.BooleanField(default=False)
 
@@ -40,3 +38,10 @@ class Bookings(models.Model):
     class Meta:
         ordering = ('day_book',)
 
+class ItemBook(models.Model):
+    order_id = models.ForeignKey(Order,on_delete=models.CASCADE)
+    item_id = models.ForeignKey(Inventory, on_delete=models.CASCADE)
+    quantity = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ('order_id',)

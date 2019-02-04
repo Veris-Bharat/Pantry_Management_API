@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from pantry.models import Beverages,Order,Inventory,Slots,Bookings
+from pantry.models import Beverages,Order,Inventory,Bookings,ItemBook
 
 
 class BeverageSerializer(serializers.ModelSerializer):
@@ -17,14 +17,14 @@ class InventorySerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('id', 'user_id', 'item_id', 'quantity', 'order_time', 'pending')
+        fields = ('id', 'user_id', 'order_time', 'pending')
 
 
-"""class SlotSerializer(serializers.ModelSerializer):
+class ItemBookSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Slots
-        fields: ('id', 'slot_start_time', 'slot_end_time')
-"""
+        model = ItemBook
+        #fields: ('order_id', 'item_id', 'quantity')
+        fields = '__all__'
 
 
 class BookingSerializer(serializers.ModelSerializer):
