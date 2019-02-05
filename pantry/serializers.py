@@ -23,7 +23,6 @@ class OrderSerializer(serializers.ModelSerializer):
 class ItemBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemBook
-        #fields: ('order_id', 'item_id', 'quantity')
         fields = '__all__'
 
 

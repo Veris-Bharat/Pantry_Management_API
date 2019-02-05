@@ -21,8 +21,8 @@ class Order(models.Model):
 
 class Beverages(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE)
-    morning_bev = models.CharField(choices=bev_choices, default="3", max_length=2)
-    evening_bev = models.CharField(choices=bev_choices, default="4", max_length=2)
+    morning_bev = models.CharField(choices=bev_choices, default=bev_choices[0], max_length=2)
+    evening_bev = models.CharField(choices=bev_choices, default=bev_choices[1], max_length=2)
 
 
 class Slots(models.Model):

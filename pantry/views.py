@@ -4,12 +4,12 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from rest_framework.status import (HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND,HTTP_201_CREATED, HTTP_200_OK, HTTP_409_CONFLICT)
+from rest_framework.status import (HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_201_CREATED, HTTP_200_OK, HTTP_409_CONFLICT)
 from rest_framework.response import Response
 from .models import Inventory, Order, Bookings, Beverages, ItemBook
-from .serializers import InventorySerializer, BeverageSerializer, BookingSerializer, OrderSerializer,ItemBookSerializer
+from .serializers import InventorySerializer, BeverageSerializer, BookingSerializer, OrderSerializer, ItemBookSerializer
 from rest_framework.views import APIView
-from datetime import date,datetime
+from datetime import date, datetime
 
 
 @csrf_exempt
@@ -152,7 +152,7 @@ class TheOrders(APIView):
                     else:
                         return Response(serial.errors, status=HTTP_400_BAD_REQUEST)
                 else:
-                    return Response({"message":"Not enough items for order in inventory"}, status=HTTP_200_OK)
+                    return Response({"message": "Not enough items for order in inventory"}, status=HTTP_200_OK)
             return Response(serializer.data, status=HTTP_201_CREATED)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 

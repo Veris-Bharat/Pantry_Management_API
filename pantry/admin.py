@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Inventory,Order,Beverages,Slots,Bookings,ItemBook
+from .models import Inventory, Order, Beverages, Slots, Bookings, ItemBook
 
 admin.site.register(Inventory)
 admin.site.register(Order)
