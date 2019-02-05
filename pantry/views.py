@@ -119,6 +119,7 @@ class TheOrders(APIView):
                 serial = ItemBookSerializer(item)
                 res.append(serial.data)
             result.append(res)
+            res=[]
         return Response({"Orders": result}, status=HTTP_200_OK)
 
     @csrf_exempt
@@ -131,13 +132,27 @@ class TheOrders(APIView):
             serializer.save()
             for item in order_data:
                 item_id = item["item_id"]
-                quantity = item["quantity"]
-                data_order = {'order_id':serializer.data['id'],'item_id':item_id, 'quantity': quantity}
-                serial=ItemBookSerializer(data=data_order)
-                if serial.is_valid():
-                    serial.save()
+                quantity = int(item["quantity"])
+                try:
+                    it = Inventory.objects.get(id=item_id)
+                    seri= InventorySerializer(it)
+                except Inventory.DoesNotExist:
+                    raise HTTP_404_NOT_FOUND
+                if int(seri.data['quantity'])>=quantity:
+                    data_order = {'order_id':serializer.data['id'],'item_id':item_id, 'quantity': quantity}
+                    serial=ItemBookSerializer(data=data_order)
+                    if serial.is_valid():
+                        serial.save()
+                        data_new = {'item_name':seri.data['item_name'], 'quantity': int(seri.data['quantity']) - quantity}
+                        ser = InventorySerializer(it,data=data_new)
+                        if ser.is_valid():
+                            pass
+                        else:
+                            return Response(ser.errors,status=HTTP_400_BAD_REQUEST)
+                    else:
+                        return Response(serial.errors, status=HTTP_400_BAD_REQUEST)
                 else:
-                    return Response(serial.errors, status=HTTP_400_BAD_REQUEST)
+                    return Response({"message":"Not enough items for order in inventory"}, status=HTTP_200_OK)
             return Response(serializer.data, status=HTTP_201_CREATED)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
