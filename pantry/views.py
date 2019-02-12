@@ -10,6 +10,9 @@ from .models import Inventory, Order, Bookings, Beverages, ItemBook
 from .serializers import InventorySerializer, BeverageSerializer, BookingSerializer, OrderSerializer, ItemBookSerializer
 from rest_framework.views import APIView
 from datetime import date, datetime
+import xlsxwriter
+import pandas as pd
+from django.http import HttpResponse
 
 
 @csrf_exempt
@@ -49,19 +52,60 @@ def register(request):
             serializer = BeverageSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
-                return Response({'message':"success"},status=HTTP_200_OK)
-            return Response({'error':serializer.errors}, status=HTTP_409_CONFLICT)
+                return Response({'message': "success"}, status=HTTP_200_OK)
+            return Response({'error': serializer.errors}, status=HTTP_409_CONFLICT)
+
+
+class GenerateReport(APIView):
+    def get(self, request):
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = "attachment; filename=report.xlsx"
+        workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+        worksheet = workbook.add_worksheet('summary')
+        bold = workbook.add_format({'bold': True, 'align': 'center'})
+        date_format = workbook.add_format({'num_format': 'dd/mm/yy', 'bold': True, 'align': 'center', 'border': True})
+        worksheet.write('A2', 'Users', bold)
+        query_bev = Beverages.objects.all()
+        q1 = query_bev.order_by('timestamp').first()
+        q2 = query_bev.order_by('user_id_id', 'timestamp')
+        query_slot = Bookings.objects.all()
+        q3 = query_slot.order_by('day_book')
+        col = 1
+        row = 2
+        for dates in pd.bdate_range(q1.timestamp.date(), date.today()):
+            worksheet.merge_range(1, col, 1, col + 3, dates.date(), date_format)
+            worksheet.write(2, col, "Slot", bold)
+            worksheet.write(2, col+1, "Orders", bold)
+            worksheet.write(2, col+2, "Morning", bold)
+            worksheet.write(2, col+3, "Evening", bold)
+            col += 4
+        last_user = " "
+        col = 3
+        for query in q2:
+            if last_user != str(query.user_id):
+                row += 1
+                last_user = str(query.user_id)
+                worksheet.write(row, 0, last_user)
+            last_date = query.timestamp.date()
+            for dates in pd.bdate_range(q1.timestamp.date(), date.today()):
+                if dates.date() >= last_date:
+                    worksheet.write(row, col, query.morning_bev)
+                    worksheet.write(row, col+1, query.evening_bev)
+                col += 4
+            col = 3
+
+        workbook.close()
+        return response
 
 
 class TheBeverage(APIView):
     @csrf_exempt
     def get_object(self, user):
         try:
-            return Beverages.objects.get(user_id=user.id)
+            return Beverages.objects.filter(user_id=user.id).last()
         except Beverages.DoesNotExist:
             raise HTTP_404_NOT_FOUND
 
-    @csrf_exempt
     def get(self, request):
         current_user = request.user
         beverages = self.get_object(current_user)
@@ -72,20 +116,18 @@ class TheBeverage(APIView):
     @csrf_exempt
     def put(self, request):
         current_user = request.user
-        beverage = self.get_object(current_user)
         morning = request.data.get('morning_bev')
         evening = request.data.get('evening_bev')
         data = {'user_id': current_user.id, 'morning_bev': morning, 'evening_bev': evening}
-        serializer = BeverageSerializer(beverage, data=data)
+        serializer = BeverageSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors,status=HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
 class TheInventory(APIView):
-    @csrf_exempt
-    def get(self,request):
+    def get(self):
         try:
             inventory = Inventory.objects.all()
         except Inventory.DoesNotExist:
@@ -105,7 +147,6 @@ class TheOrders(APIView):
         except Order.DoesNotExist:
             return Response({"message": "No order Exist"}, status=HTTP_404_NOT_FOUND)
 
-    @csrf_exempt
     def get(self, request):
         current_user = request.user
         orders = self.get_object(current_user)
@@ -146,7 +187,7 @@ class TheOrders(APIView):
                         data_new = {'item_name':seri.data['item_name'], 'quantity': int(seri.data['quantity']) - quantity}
                         ser = InventorySerializer(it,data=data_new)
                         if ser.is_valid():
-                            pass
+                            ser.save()
                         else:
                             return Response(ser.errors,status=HTTP_400_BAD_REQUEST)
                     else:
@@ -165,7 +206,6 @@ class TheBookings(APIView):
         except Bookings.DoesNotExist:
             return None
 
-    @csrf_exempt
     def get(self, request):
         current_user = request.user
         booking = self.get_object(current_user)
@@ -185,20 +225,27 @@ class TheBookings(APIView):
         current_user = request.user
         booking = self.get_object(current_user)
         if booking is None:
-            slot_id=request.data.get('slot_id')
-            data = {'user_id': current_user.id, 'slot_id': slot_id, 'day_book': date.today()}
-            serializer = BookingSerializer(data=data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({"message": "Slot acquired"}, status=HTTP_201_CREATED)
-            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+            slot_id = request.data.get('slot_id')
+            result = Bookings.objects.filter(day_book=date.today())
+            slot = [8, 8, 8, 8]
+            for item in result:
+                ser = BookingSerializer(item)
+                slot[ser.data["slot_id"] - 1] -= 1
+            if slot[int(slot_id)-1] > 0:
+                data = {'user_id': current_user.id, 'slot_id': slot_id, 'day_book': date.today()}
+                serializer = BookingSerializer(data=data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({"message": "Slot acquired"}, status=HTTP_201_CREATED)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+            return Response({"message": "new slot not available"}, status=HTTP_409_CONFLICT)
         else:
-            return Response({"message": "Already Added"},status=HTTP_409_CONFLICT)
+            return Response({"message": "Already Added"}, status=HTTP_409_CONFLICT)
 
     @csrf_exempt
     def put(self, request):
         current_user = request.user
-        booking=self.get_object(current_user)
+        booking = self.get_object(current_user)
         if booking is None:
             return Response({"message": "Select a slot first"}, status=HTTP_400_BAD_REQUEST)
         else:

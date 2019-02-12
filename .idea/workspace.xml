@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74a50b5c-c87e-4ba6-8fbd-a04a05069779" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/pantry/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantry/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Pantry_Management_API.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Pantry_Management_API.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantry/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantry/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantry/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantry/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pantry/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pantry/urls.py" afterDir="false" />
@@ -14,81 +17,45 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1644157210">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="7" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.26" value="1" />
-          <entry key="project.open.time.27" value="1" />
-          <entry key="project.open.time.32" value="1" />
-          <entry key="project.open.time.37" value="1" />
-          <entry key="project.open.time.47" value="1" />
-          <entry key="project.open.time.67" value="1" />
-          <entry key="project.opened" value="8" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="gitignore" value="1" />
-          <entry key="py" value="40" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="40" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="gitignore" value="8" />
-          <entry key="py" value="11122" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="8" />
-          <entry key="Python" value="11122" />
-        </counts>
-      </usages-collector>
-    </session>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pantry/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+            <state relative-caret-position="255">
+              <caret line="17" column="72" lean-forward="true" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1549356922503" expanded="true" signature="199:204" ph="..." />
-                <marker date="1549356922503" expanded="true" signature="199:320" ph="..." />
-                <marker date="1549356922503" expanded="true" signature="346:351" ph="..." />
-                <marker date="1549356922503" expanded="true" signature="597:601" ph="..." />
-                <marker date="1549356922503" expanded="true" signature="876:987" ph="..." />
-                <marker date="1549356922503" expanded="true" signature="1016:1021" ph="..." />
-                <marker date="1549356922503" expanded="true" signature="1280:1281" ph="..." />
+                <marker date="1549978816172" expanded="true" signature="382:387" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pantry/serializers.py">
+        <entry file="file://$PROJECT_DIR$/pantry/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="150">
+              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
               <folding>
-                <element signature="e#0#38#0" expanded="true" />
-                <marker date="1549356423166" expanded="true" signature="165:169" ph="..." />
-                <marker date="1549356423166" expanded="true" signature="324:329" ph="..." />
-                <marker date="1549356423166" expanded="true" signature="469:474" ph="..." />
-                <marker date="1549356423166" expanded="true" signature="624:629" ph="..." />
-                <marker date="1549356423166" expanded="true" signature="748:753" ph="..." />
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,14 +64,30 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pantry/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="134" column="48" lean-forward="true" selection-start-line="134" selection-start-column="48" selection-end-line="134" selection-end-column="48" />
+            <state relative-caret-position="-668">
+              <caret line="69" column="22" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="22" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
-                <marker date="1549357692118" expanded="true" signature="2649:2797" ph="..." />
-                <marker date="1549357692118" expanded="true" signature="2842:2851" ph="..." />
-                <marker date="1549357692118" expanded="true" signature="4160:4161" ph="..." />
-                <marker date="1549357692118" expanded="true" signature="6782:6787" ph="..." />
+                <marker date="1549980265527" expanded="true" signature="4634:4792" ph="..." />
+                <marker date="1549980265527" expanded="true" signature="4820:4829" ph="..." />
+                <marker date="1549980265527" expanded="true" signature="6055:6056" ph="..." />
+                <marker date="1549980265527" expanded="true" signature="8666:8671" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pantry/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
+              <folding>
+                <marker date="1549969517111" expanded="true" signature="165:169" ph="..." />
+                <marker date="1549969517111" expanded="true" signature="324:329" ph="..." />
+                <marker date="1549969517111" expanded="true" signature="469:474" ph="..." />
+                <marker date="1549969517111" expanded="true" signature="623:628" ph="..." />
+                <marker date="1549969517111" expanded="true" signature="747:752" ph="..." />
               </folding>
             </state>
           </provider>
@@ -125,12 +108,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/settings/settings.py" />
         <option value="$PROJECT_DIR$/pantry/migrations/serializers.py" />
         <option value="$PROJECT_DIR$/Pantry_Management_API/urls.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/pantry/admin.py" />
         <option value="$PROJECT_DIR$/pantry/apps.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/settings/settings.py" />
         <option value="$PROJECT_DIR$/pantry/urls.py" />
         <option value="$PROJECT_DIR$/pantry/serializers.py" />
         <option value="$PROJECT_DIR$/pantry/models.py" />
@@ -141,22 +124,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="697" />
-    <option name="height" value="735" />
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State />
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>Buildout</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -164,7 +133,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -177,16 +146,30 @@
               <item name="Pantry_Management_API" type="462c0819:PsiDirectoryNode" />
               <item name="pantry" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Pantry_Management_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Pantry_Management_API" type="462c0819:PsiDirectoryNode" />
+              <item name="Pantry_Management_API" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Bharat/workspace/django/Pantry_Management_API/pantry/models.py" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tutorial" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549895512539" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propGUI" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -210,8 +193,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548926328926</updated>
+      <workItem from="1549450577505" duration="448000" />
+      <workItem from="1549451119718" duration="2472000" />
+      <workItem from="1549522483109" duration="1250000" />
+      <workItem from="1549710706599" duration="651000" />
+      <workItem from="1549865869155" duration="11877000" />
+      <workItem from="1549952418705" duration="21650000" />
     </task>
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="38348000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -224,10 +216,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.16989568" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.38543248" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -236,25 +233,27 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295082" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32231405" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3272727" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.31735536" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32569557" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32843137" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" weight="0.3289256" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" weight="0.32980332" />
+      <window_info anchor="right" id="SciView" order="9" weight="0.32852808" />
     </layout>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/settings/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="58" column="61" lean-forward="true" selection-start-line="58" selection-start-column="61" selection-end-line="58" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pantry/migrations/serializers.py" />
     <entry file="file://$PROJECT_DIR$/Pantry_Management_API/urls.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -270,16 +269,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/pantry/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -290,10 +283,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/03376f42-472e-4ecd-a71c-02a7bebd6594 (1).uml" />
+    <entry file="file://$USER_HOME$/Downloads/03376f42-472e-4ecd-a71c-02a7bebd6594.uml" />
+    <entry file="file://$PROJECT_DIR$/pantry/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
+          <folding>
+            <marker date="1549969517111" expanded="true" signature="165:169" ph="..." />
+            <marker date="1549969517111" expanded="true" signature="324:329" ph="..." />
+            <marker date="1549969517111" expanded="true" signature="469:474" ph="..." />
+            <marker date="1549969517111" expanded="true" signature="623:628" ph="..." />
+            <marker date="1549969517111" expanded="true" signature="747:752" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pantry/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        <state relative-caret-position="150">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -302,46 +325,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pantry/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+        <state relative-caret-position="255">
+          <caret line="17" column="72" lean-forward="true" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-            <marker date="1549356922503" expanded="true" signature="199:204" ph="..." />
-            <marker date="1549356922503" expanded="true" signature="199:320" ph="..." />
-            <marker date="1549356922503" expanded="true" signature="346:351" ph="..." />
-            <marker date="1549356922503" expanded="true" signature="597:601" ph="..." />
-            <marker date="1549356922503" expanded="true" signature="876:987" ph="..." />
-            <marker date="1549356922503" expanded="true" signature="1016:1021" ph="..." />
-            <marker date="1549356922503" expanded="true" signature="1280:1281" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pantry/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1549356423166" expanded="true" signature="165:169" ph="..." />
-            <marker date="1549356423166" expanded="true" signature="324:329" ph="..." />
-            <marker date="1549356423166" expanded="true" signature="469:474" ph="..." />
-            <marker date="1549356423166" expanded="true" signature="624:629" ph="..." />
-            <marker date="1549356423166" expanded="true" signature="748:753" ph="..." />
+            <marker date="1549978816172" expanded="true" signature="382:387" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pantry/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="134" column="48" lean-forward="true" selection-start-line="134" selection-start-column="48" selection-end-line="134" selection-end-column="48" />
+        <state relative-caret-position="-668">
+          <caret line="69" column="22" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="22" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
-            <marker date="1549357692118" expanded="true" signature="2649:2797" ph="..." />
-            <marker date="1549357692118" expanded="true" signature="2842:2851" ph="..." />
-            <marker date="1549357692118" expanded="true" signature="4160:4161" ph="..." />
-            <marker date="1549357692118" expanded="true" signature="6782:6787" ph="..." />
+            <marker date="1549980265527" expanded="true" signature="4634:4792" ph="..." />
+            <marker date="1549980265527" expanded="true" signature="4820:4829" ph="..." />
+            <marker date="1549980265527" expanded="true" signature="6055:6056" ph="..." />
+            <marker date="1549980265527" expanded="true" signature="8666:8671" ph="..." />
           </folding>
         </state>
       </provider>
@@ -349,6 +351,76 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Django</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Pantry_Management_API</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ScopeChooserConfigurable.UI">
         <settings>
           <splitter-proportions>

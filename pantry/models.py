@@ -2,27 +2,31 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 
-bev_choices = (("3", "3"), ("4", "4"), ("7", "7"), ("8", "8"))
+bev_choices = (("C", "Coffee"), ("T", "Tea"), ("L", "Lemonade"), ("G", "GreenTea"), ("Null", "Null"))
+choice = (("M", "morning"), ("E", "evening"), ("N", "none"))
 
 
-class Inventory(models.Model):
-    item_name = models.CharField(max_length=25,null=False)
+class Inventory(models.Model):  # creating a model for inventory which will have fields id,item name and quantity
+    item_name = models.CharField(max_length=25, null=False)
     quantity = models.PositiveSmallIntegerField(default=0)
 
 
-class Order(models.Model):
-    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
+class Order(models.Model):  # creating a model for orders which will have fields id,user id,order time and pending(flag)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     order_time = models.DateTimeField(auto_now=True)
     pending = models.BooleanField(default=False)
+    is_bev = models.CharField(choices=choice, default="N", max_length=1)
 
     class Meta:
-        ordering = ('order_time',)
+        ordering = ('order_time',)  # the model will be ordered on the basis of order_time
 
 
+# creating a model for beverages which will have fields id, user id, morning beverages and evening beverages
 class Beverages(models.Model):
-    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
-    morning_bev = models.CharField(choices=bev_choices, default=bev_choices[0], max_length=2)
-    evening_bev = models.CharField(choices=bev_choices, default=bev_choices[1], max_length=2)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now=True)
+    morning_bev = models.CharField(choices=bev_choices, default="C", max_length=2)
+    evening_bev = models.CharField(choices=bev_choices, default="T", max_length=2)
 
 
 class Slots(models.Model):
@@ -38,8 +42,9 @@ class Bookings(models.Model):
     class Meta:
         ordering = ('day_book',)
 
+
 class ItemBook(models.Model):
-    order_id = models.ForeignKey(Order,on_delete=models.CASCADE)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
     item_id = models.ForeignKey(Inventory, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField(default=0)
 

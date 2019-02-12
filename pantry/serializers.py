@@ -17,7 +17,7 @@ class InventorySerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('id', 'user_id', 'order_time', 'pending')
+        fields = ('id', 'user_id', 'order_time', 'is_bev')
 
 
 class ItemBookSerializer(serializers.ModelSerializer):
