@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from datetime import datetime
 
 bev_choices = (("C", "Coffee"), ("T", "Tea"), ("L", "Lemonade"), ("G", "GreenTea"), ("Null", "Null"))
-choice = (("M", "morning"), ("E", "evening"), ("N", "none"))
 
 
 class Inventory(models.Model):  # creating a model for inventory which will have fields id,item name and quantity
@@ -15,7 +14,6 @@ class Order(models.Model):  # creating a model for orders which will have fields
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     order_time = models.DateTimeField(auto_now=True)
     pending = models.BooleanField(default=False)
-    is_bev = models.CharField(choices=choice, default="N", max_length=1)
 
     class Meta:
         ordering = ('order_time',)  # the model will be ordered on the basis of order_time

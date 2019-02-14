@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from .models import Inventory, Order, Bookings, Beverages, ItemBook
 from .serializers import InventorySerializer, BeverageSerializer, BookingSerializer, OrderSerializer, ItemBookSerializer
 from rest_framework.views import APIView
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import xlsxwriter
 import pandas as pd
 from django.http import HttpResponse
@@ -63,15 +63,18 @@ class GenerateReport(APIView):
         workbook = xlsxwriter.Workbook(response, {'in_memory': True})
         worksheet = workbook.add_worksheet('summary')
         bold = workbook.add_format({'bold': True, 'align': 'center'})
+        nothing = workbook.add_format({'align': 'center', 'underline': True})
+        user_headings = workbook.add_format({'align': 'center', 'underline': True, 'bold': True, 'border' : True, 'bg_color': 'red'})
         date_format = workbook.add_format({'num_format': 'dd/mm/yy', 'bold': True, 'align': 'center', 'border': True})
         worksheet.write('A2', 'Users', bold)
         query_bev = Beverages.objects.all()
         q1 = query_bev.order_by('timestamp').first()
         q2 = query_bev.order_by('user_id_id', 'timestamp')
         query_slot = Bookings.objects.all()
-        q3 = query_slot.order_by('day_book')
+        q3 = query_slot.order_by('user_id_id', 'day_book')
+        query_order = Order.objects.all()
+        q4 = query_order.order_by('user_id_id', 'order_time')
         col = 1
-        row = 2
         for dates in pd.bdate_range(q1.timestamp.date(), date.today()):
             worksheet.merge_range(1, col, 1, col + 3, dates.date(), date_format)
             worksheet.write(2, col, "Slot", bold)
@@ -81,18 +84,87 @@ class GenerateReport(APIView):
             col += 4
         last_user = " "
         col = 3
+        row = 2
+        work = {}
         for query in q2:
+            cols = 1
             if last_user != str(query.user_id):
                 row += 1
                 last_user = str(query.user_id)
-                worksheet.write(row, 0, last_user)
+                work[last_user] = workbook.add_worksheet(last_user)
+                work[last_user].merge_range(1, cols+3, 1, cols + 9, last_user.upper(), user_headings)
+                worksheet.write(row, 0, 'internal:%s!A1' % last_user, nothing, last_user)
+                for dates in pd.bdate_range(q1.timestamp.date(), date.today()):
+                    work[last_user].write('A1', 'internal:summary!A1', nothing, 'summary')
+                    work[last_user].merge_range(3, cols, 3, cols + 3, dates.date(), date_format)
+                    work[last_user].write(4, cols, "Slot", bold)
+                    work[last_user].write(4, cols+1, "Orders", bold)
+                    work[last_user].write(4, cols+2, "Morning", bold)
+                    work[last_user].write(4, cols+3, "Evening", bold)
+                    cols += 4
             last_date = query.timestamp.date()
             for dates in pd.bdate_range(q1.timestamp.date(), date.today()):
                 if dates.date() >= last_date:
                     worksheet.write(row, col, query.morning_bev)
                     worksheet.write(row, col+1, query.evening_bev)
+                    work[last_user].write(5, col, query.morning_bev)
+                    work[last_user].write(5, col+1, query.evening_bev)
                 col += 4
             col = 3
+
+        last_user = " "
+        col = 1
+        row = 2
+        cols = col
+        last_date = q1.timestamp.date()
+        for query in q3:
+            col = cols
+            if last_user != str(query.user_id):
+                row += 1
+                col = 1
+                last_user = str(query.user_id)
+                last_date = q1.timestamp.date()
+            for dates in pd.bdate_range(last_date, date.today()):
+                if dates.date() == query.day_book:
+                    worksheet.write(row, col, query.slot_id_id)
+                    work[last_user].write(5, col, query.slot_id_id)
+                    last_date = query.day_book + timedelta(days=1)
+                    cols = col + 4
+                else:
+                    worksheet.write(row, col, "NA")
+                    work[last_user].write(5, col, "NA")
+                col += 4
+        last_user = " "
+        col = 2
+        row = 3
+        cols = col
+        res = []
+        last_date = q1.timestamp.date()
+        sid = q4.first().user_id_id
+        for query in q4:
+            col = cols
+            if query.order_time.date() == last_date - timedelta(days=1):
+                col -= 4
+                last_date = query.order_time.date()
+            if last_user != str(query.user_id):
+                num = query.user_id_id
+                row += num - sid
+                sid = num
+                col = 2
+                last_user = str(query.user_id)
+                last_date = q1.timestamp.date()
+                res = []
+            for dates in pd.bdate_range(last_date, date.today()):
+                if dates.date() == query.order_time.date():
+                    res.append(str(query.id))
+                    worksheet.write(row, col, str(res))
+                    work[last_user].write(5, col, str(res))
+                    last_date = query.order_time.date() + timedelta(days=1)
+                    cols = col + 4
+                else:
+                    worksheet.write(row, col, "NA")
+                    work[last_user].write(5, col, "NA")
+                col += 4
 
         workbook.close()
         return response
