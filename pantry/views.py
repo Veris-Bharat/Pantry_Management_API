@@ -13,6 +13,7 @@ from datetime import date, datetime, timedelta
 import xlsxwriter
 import pandas as pd
 from django.http import HttpResponse
+import boto3
 
 
 @csrf_exempt
@@ -58,9 +59,10 @@ def register(request):
 
 class GenerateReport(APIView):
     def get(self, request):
-        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        response['Content-Disposition'] = "attachment; filename=report.xlsx"
-        workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+        #response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        #response['Content-Disposition'] = "attachment; filename=report.xlsx"
+        workbook = xlsxwriter.Workbook('report.xlsx', {'in_memory': True})
+        s3_resource = boto3.resource('s3')
         worksheet = workbook.add_worksheet('summary')
         bold = workbook.add_format({'bold': True, 'align': 'center'})
         nothing = workbook.add_format({'align': 'center', 'underline': True})
@@ -68,14 +70,14 @@ class GenerateReport(APIView):
         date_format = workbook.add_format({'num_format': 'dd/mm/yy', 'bold': True, 'align': 'center', 'border': True})
         worksheet.write('A2', 'Users', bold)
         query_bev = Beverages.objects.all()
-        q1 = query_bev.order_by('timestamp').first()
+        start_time = query_bev.order_by('timestamp').first().timestamp.date()
         q2 = query_bev.order_by('user_id_id', 'timestamp')
         query_slot = Bookings.objects.all()
         q3 = query_slot.order_by('user_id_id', 'day_book')
         query_order = Order.objects.all()
         q4 = query_order.order_by('user_id_id', 'order_time')
         col = 1
-        for dates in pd.bdate_range(q1.timestamp.date(), date.today()):
+        for dates in pd.bdate_range(start_time, date.today()):
             worksheet.merge_range(1, col, 1, col + 3, dates.date(), date_format)
             worksheet.write(2, col, "Slot", bold)
             worksheet.write(2, col+1, "Orders", bold)
@@ -94,7 +96,7 @@ class GenerateReport(APIView):
                 work[last_user] = workbook.add_worksheet(last_user)
                 work[last_user].merge_range(1, cols+3, 1, cols + 9, last_user.upper(), user_headings)
                 worksheet.write(row, 0, 'internal:%s!A1' % last_user, nothing, last_user)
-                for dates in pd.bdate_range(q1.timestamp.date(), date.today()):
+                for dates in pd.bdate_range(start_time, date.today()):
                     work[last_user].write('A1', 'internal:summary!A1', nothing, 'summary')
                     work[last_user].merge_range(3, cols, 3, cols + 3, dates.date(), date_format)
                     work[last_user].write(4, cols, "Slot", bold)
@@ -103,7 +105,7 @@ class GenerateReport(APIView):
                     work[last_user].write(4, cols+3, "Evening", bold)
                     cols += 4
             last_date = query.timestamp.date()
-            for dates in pd.bdate_range(q1.timestamp.date(), date.today()):
+            for dates in pd.bdate_range(start_time, date.today()):
                 if dates.date() >= last_date:
                     worksheet.write(row, col, query.morning_bev)
                     worksheet.write(row, col+1, query.evening_bev)
@@ -116,14 +118,14 @@ class GenerateReport(APIView):
         col = 1
         row = 2
         cols = col
-        last_date = q1.timestamp.date()
+        last_date = start_time
         for query in q3:
             col = cols
             if last_user != str(query.user_id):
                 row += 1
                 col = 1
                 last_user = str(query.user_id)
-                last_date = q1.timestamp.date()
+                last_date = start_time
             for dates in pd.bdate_range(last_date, date.today()):
                 if dates.date() == query.day_book:
                     worksheet.write(row, col, query.slot_id_id)
@@ -139,7 +141,7 @@ class GenerateReport(APIView):
         row = 3
         cols = col
         res = []
-        last_date = q1.timestamp.date()
+        last_date = start_time
         sid = q4.first().user_id_id
         for query in q4:
             col = cols
@@ -152,7 +154,7 @@ class GenerateReport(APIView):
                 sid = num
                 col = 2
                 last_user = str(query.user_id)
-                last_date = q1.timestamp.date()
+                last_date = start_time
                 res = []
             for dates in pd.bdate_range(last_date, date.today()):
                 if dates.date() == query.order_time.date():
@@ -167,7 +169,13 @@ class GenerateReport(APIView):
                 col += 4
 
         workbook.close()
-        return response
+        #s3 = boto3.client('s3')
+        #s3.generate_presigned_url('put_object', Params={'Bucket':'generatingreports', 'Key':'report.xlsx'}, ExpiresIn=600)
+        first_object = s3_resource.Object(bucket_name='generatingreports', key='report.xlsx')
+        first_object.upload_file('report.xlsx',ExtraArgs={'ACL':'public-read'})
+        bucket_location = boto3.client('s3').get_bucket_location(Bucket='generatingreports')
+        object_url = "https://s3-{0}.amazonaws.com/{1}/{2}".format(bucket_location['LocationConstraint'],'generatingreports','report.xlsx')
+        return Response({"message":"Report generated","code":"201 CREATED","url":object_url})
 
 
 class TheBeverage(APIView):
