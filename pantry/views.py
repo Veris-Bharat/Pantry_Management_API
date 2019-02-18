@@ -57,10 +57,18 @@ def register(request):
             return Response({'error': serializer.errors}, status=HTTP_409_CONFLICT)
 
 
+class GetURL(APIView):
+    def get(self, request):
+        bucket = 'generatingreports'
+        file_key = 'report.xlsx' 
+        uri_duration = 100
+        s3Client = boto3.client('s3')
+        _uri = s3Client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': file_key}, ExpiresIn = uri_duration)
+        return Response({"mess":_uri}, status=HTTP_200_OK)
+
+
 class GenerateReport(APIView):
     def get(self, request):
-        #response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        #response['Content-Disposition'] = "attachment; filename=report.xlsx"
         workbook = xlsxwriter.Workbook('report.xlsx', {'in_memory': True})
         s3_resource = boto3.resource('s3')
         worksheet = workbook.add_worksheet('summary')
@@ -169,13 +177,12 @@ class GenerateReport(APIView):
                 col += 4
 
         workbook.close()
-        #s3 = boto3.client('s3')
-        #s3.generate_presigned_url('put_object', Params={'Bucket':'generatingreports', 'Key':'report.xlsx'}, ExpiresIn=600)
         first_object = s3_resource.Object(bucket_name='generatingreports', key='report.xlsx')
-        first_object.upload_file('report.xlsx',ExtraArgs={'ACL':'public-read'})
-        bucket_location = boto3.client('s3').get_bucket_location(Bucket='generatingreports')
-        object_url = "https://s3-{0}.amazonaws.com/{1}/{2}".format(bucket_location['LocationConstraint'],'generatingreports','report.xlsx')
-        return Response({"message":"Report generated","code":"201 CREATED","url":object_url})
+        #first_object.upload_file('report.xlsx',ExtraArgs={'ACL':'public-read'})
+        first_object.upload_file('report.xlsx')
+        #bucket_location = boto3.client('s3').get_bucket_location(Bucket='generatingreports')
+        #object_url = "https://s3-{0}.amazonaws.com/{1}/{2}".format(bucket_location['LocationConstraint'],'generatingreports','report.xlsx')
+        return Response({"message":"Report generated","code":"201 CREATED"})
 
 
 class TheBeverage(APIView):
